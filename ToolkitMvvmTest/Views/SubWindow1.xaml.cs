@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,22 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ToolkitMvvmTest.ViewModels;
 
-namespace ToolkitMvvmTest
+namespace ToolkitMvvmTest.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// SubWindow1.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SubWindow1 : Window
     {
-        public MainWindow()
+        public SubWindow1()
         {
             InitializeComponent();
-            this.DataContext = App.Current.Services.GetService(typeof(MainWindowViewModel));
-            //this.DataContext = App.Current.Services.GetService<MainWindowViewModel>();
+            this.DataContext = new SubWindow1ViewModel();
         }
     }
 }
