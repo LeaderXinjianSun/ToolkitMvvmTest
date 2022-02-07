@@ -1,4 +1,5 @@
-Prism还没有支持dotnet6，找到一个支持dotnet的MVVM框架[Microsoft.Toolkit.Mvvm](https://docs.microsoft.com/en-us/windows/communitytoolkit/mvvm/introduction)。B站视频教程: [WPF应用开发中的轻型级MVVM框架-MVVM Toolkit](https://www.bilibili.com/video/BV1Zb4y1b77i?spm_id_from=333.1007.top_right_bar_window_custom_collection.content.click)。
+~~Prism还没有支持dotnet6~~，找到一个支持dotnet的MVVM框架[Microsoft.Toolkit.Mvvm](https://docs.microsoft.com/en-us/windows/communitytoolkit/mvvm/introduction)。B站视频教程: [WPF应用开发中的轻型级MVVM框架-MVVM Toolkit](https://www.bilibili.com/video/BV1Zb4y1b77i?spm_id_from=333.1007.top_right_bar_window_custom_collection.content.click)。
+后来我发现Prism是支持dotnet core框架的，只是[Prism Template Pack](https://marketplace.visualstudio.com/items?itemName=BrianLagunas.PrismTemplatePack)目前只支持vs2019。
 #### 数据绑定
 ```xml
     <Grid>
