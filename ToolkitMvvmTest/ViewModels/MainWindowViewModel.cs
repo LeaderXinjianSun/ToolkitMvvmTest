@@ -1,4 +1,5 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using HalconDotNet;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
@@ -7,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 using ToolkitMvvmTest.Services;
 using ToolkitMvvmTest.Share;
@@ -31,6 +33,12 @@ namespace ToolkitMvvmTest.ViewModels
             get => collectionData;
             set => SetProperty(ref collectionData, value);
         }
+        private HImage cameraIamge0;
+        public HImage CameraIamge0
+        {
+            get { return cameraIamge0; }
+            set { SetProperty(ref cameraIamge0, value); }
+        }
 
         private readonly IFileService _fileService;
 
@@ -39,6 +47,7 @@ namespace ToolkitMvvmTest.ViewModels
         public ICommand Button1ClickCommand { get; }
         public ICommand Button2ClickCommand { get; }
         public ICommand AppLoadedEventCommand { get; }
+        public ICommand OpenButtonClickCommand { get; }
         #endregion
         #region 构造函数
         public MainWindowViewModel(IFileService fileService)
@@ -47,7 +56,10 @@ namespace ToolkitMvvmTest.ViewModels
             Button1ClickCommand = new RelayCommand<object>(DoSomething);
             Button2ClickCommand = new RelayCommand(DoSomething2);
             AppLoadedEventCommand = new AsyncRelayCommand(AppLoaded);
+            OpenButtonClickCommand = new RelayCommand(OpenImage);
         }
+
+ 
 
         #endregion
         #region 方法
@@ -58,6 +70,17 @@ namespace ToolkitMvvmTest.ViewModels
         private void DoSomething2()
         {
             WeakReferenceMessenger.Default.Send(new TMessage { Type = "Test", Content = DateTime.Now.ToString("HH:mm:ss") }, "AAA");
+        }
+        private void OpenImage()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.png;*.bmp;*.jpg;*.tif";
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                HObject image;
+                HOperatorSet.ReadImage(out image, openFileDialog.FileName);
+                CameraIamge0 = new HImage(image);
+            }
         }
         private Task AppLoaded()
         {

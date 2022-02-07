@@ -205,3 +205,39 @@ public MainWindow()
             //this.DataContext = App.Current.Services.GetService<MainWindowViewModel>();
         }
 ```
+#### .net core项目引用dll
+
+- 添加程序集
+
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/22023506/1644225355303-0ff5d26e-b9c5-4a05-b9b7-ed5f0d77e27e.png#clientId=u4ce9d044-9ddc-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=434&id=u2b8a57d2&margin=%5Bobject%20Object%5D&name=image.png&originHeight=543&originWidth=786&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20978&status=done&style=none&taskId=u55cd0536-62b1-4ca7-a30b-eff14f251da&title=&width=628.8)
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/22023506/1644225389786-781e472c-31c8-4bce-afa6-6d6d6b862fbf.png#clientId=u4ce9d044-9ddc-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=201&id=ud30b58f2&margin=%5Bobject%20Object%5D&name=image.png&originHeight=251&originWidth=242&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11694&status=done&style=none&taskId=u4d4e11f8-60ef-456d-9f4f-52796c592e7&title=&width=193.6)
+
+- 正常写控件代码
+```xml
+xmlns:halconviewer="clr-namespace:HalconViewer;assembly=HalconViewer"
+<halconviewer:ImageViewer
+                          AppendHMessage="{Binding CameraAppendHMessage0}"
+                          AppendHObject="{Binding CameraAppendHObject0}"
+                          AutoRepaint="True"
+                          GCStyle="{Binding CameraGCStyle0}"
+                          Image="{Binding CameraIamge0}"
+                          ROIList="{Binding CameraROIList0}"
+                          Repaint="{Binding CameraRepaint0}" />   
+```
+
+- 如何使用System.Windows.Forms？
+   - 编辑项目文件ToolkitMvvmTest.csprog
+   - 开启对应功能
+```xml
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+```
+
+- 测试可用(打开图片)
+
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/22023506/1644225213765-ed463da8-8830-4338-85e8-3317b03eed10.png#clientId=u4ce9d044-9ddc-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=474&id=udb3157cb&margin=%5Bobject%20Object%5D&name=image.png&originHeight=593&originWidth=786&originalType=binary&ratio=1&rotation=0&showTitle=false&size=112046&status=done&style=none&taskId=u73359398-d985-4a36-8dff-fed68715ea8&title=&width=628.8)
